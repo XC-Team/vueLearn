@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{ msg | msgope("傻逼",'123') | test }}</p>
+    </div>
+    <script src="./lib/vue.js"></script>
+    <script>
+        Vue.filter('msgope', function (data, arg, arg2) {
+                return data.replace(/单纯/g, arg+arg2)
+        })
+        Vue.filter('test', function (msg) {
+                return msg+'================='
+        })
+        let app = new Vue({
+            el: '#app',
+            data: {
+                msg: '我是一个单纯的人，很单纯，真的很单纯！'
+            },
+            methods: {}
+        })
+        
+    </script>
+</body>
+</html>

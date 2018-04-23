@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <!-- <script>
+        var data = {a:1}
+        var app5 = new Vue({
+            data: data
+        });
+        console.log(app5.$data===data);
+        console.log(app5.a===data.a);
+        app5.a = 5;
+        console.log(data.a);
+        data.a = 10;
+        console.log(app5.a)
+    </script> -->
+    <!-- <div id="app">
+        <p>{{a}}</p>
+        <p>{{b}}</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                a: 1,
+                b: null
+            }
+        })
+    </script> -->
+    <script>
+        var myComponent = Vue.component('my-component', {
+            props: ['title', 'content'],
+            data: function(){
+                return {
+                    desc: '123'
+                }
+            },
+            template: '<div> \ 
+                        < h1 > {{ title }}</h1 > \
+                <p>{{ content }}</p> \
+                <p>{{ desc }}</p> \
+                </div > '
+        })
+    </script>
+</body>
+</html>

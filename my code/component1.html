@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <myComponent title="hahaha" content="Hello, vue"></myComponent>
+    <script>
+        let myComponent = Vue.component('myComponent', {
+            props: ['title', 'content'],
+            template: '<h1>{{title}}</h1><p>{{content}}</p>'
+        })
+    </script>
+</body>
+</html>

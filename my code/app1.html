@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <!-- <div id="app">
+        {{ message }}
+    </div>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!'
+            }
+        }) 
+    </script>-->
+    <div id="app1" v-bind: title='message'>
+       鼠标悬置几秒钟后查看此处动态绑定的提示信息
+    </div>
+    <script>
+        let app1 = new Vue({
+            el: '#app1',
+            data: {
+                message: "该页面加载于"+new Date().toLocaleString
+            }
+        })
+    </script> 
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .thin {
+            font-weight: 200px;
+        }
+        .italic {
+            font-style: italic;
+        }
+        .red {
+            color: red;
+        }
+        .space {
+            letter-spacing: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--<div :class="['thin', 'italic', 'red', flag?'':'space']">I am jomsou!!!</div>-->
+        <div :class="['thin', 'italic', 'red', {'space': flag}]">I am jomsou!!!</div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                flag: false
+            }
+        })
+    </script>
+</body>
+</html>
