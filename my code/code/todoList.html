@@ -28,12 +28,12 @@
                 </label>
                 <label for="">
                     Item:
-                    <input type="text" class="form-control" v-model="name">
+                    <input type="text" class="form-control" v-model="name" @keyup.f2='add'>
                 </label>
                 <input type="button" value="添加" class="btn btn-primary" @click='add'>
                 <label for="">
                     按关键字搜索:
-                    <input type="text" class="form-control" v-model="keywords">
+                    <input type="text" class="form-control" v-model="keywords" id="search" v-focus v-color="'blue'">
                 </label>
             </div>
         </div>
@@ -58,32 +58,68 @@
                 </tr>
             </tbody>
         </table>
-
+        <h1 v-fontweight="500" v-fontsize="50" >lalalla</h1> 
     </div>
     <script src="./lib/vue.js"></script>
     <script>
-        Vue.filter('dataFormat', data => {
-            var dt = new Date(data);
-            var y = dt.getFullYear();
-            var m = dt.getMonth();
-            var d = dt.getDay();
+        Vue.filter('dataFormat', (data, pattern='') => {
+            if (pattern.toLowerCase() === 'yyyy-mm-dd') {
+                return `${y}-${m}-${d}`;
+            } else {
+                var dt = new Date(data);
+                var y = dt.getFullYear();
+                var m = dt.getMonth();
+                var d = dt.getDay();
 
-            return `${y}-${m}-${d}`;
+                return `${y}-${m}-${d}`;
+            }
         })
+
+        Vue.config.keyCodes.f2 = 113
+        Vue.directive('focus', {
+            bind: function(el){
+                //el.focus()
+            },
+            inserted: function(el){
+                el.focus()
+            },
+            updated: function(){}
+        });
+        Vue.directive('color', {
+            bind: function(el, binding){
+                //el.focus()
+                el.style.color = binding.value;
+            },
+            inserted: function(el){
+                
+            },
+            updated: function(){}
+        });
         let app = new Vue({
             el: '#app',
             data: {
                 id: '',
                 name: '',
                 keywords: '',
-                list: [
-                    { id: '1', name: '洗衣服', ctime: new Date() },
-                    { id: '2', name: '做饭', ctime: new Date() }
+                list: [{
+                        id: '1',
+                        name: '洗衣服',
+                        ctime: new Date()
+                    },
+                    {
+                        id: '2',
+                        name: '做饭',
+                        ctime: new Date()
+                    }
                 ]
             },
             methods: {
                 add() {
-                    var car = { id: this.id, name: this.name, ctime: new Date() };
+                    var car = {
+                        id: this.id,
+                        name: this.name,
+                        ctime: new Date()
+                    };
                     this.list.push(car);
                     this.id = '';
                     this.name = '';
@@ -105,8 +141,36 @@
                     })
                     return newList;
                 }
+            },
+            filters: {
+                'dataFormat': (data, pattern = '') => {
+                    if (pattern.toLowerCase() === 'yyyy-mm-dd') {
+                        return `${y}-${m}-${d}`;
+                    } else {
+                        var dt = new Date(data);
+                        var y = dt.getFullYear();
+                        var m = dt.getMonth();
+                        var d = dt.getDay();
+
+                        return `${y}-${m}-${d}~`;
+                    }
+                }
+            },
+            directives: {
+                'fontweight': {
+                   bind: function(el, binding){
+                    el.style.fontWeight = binding.value;
+                    } 
+                },
+                'fontsize': {
+                    bind: function(el, binding){
+                        el.style.fontSize = parseInt(binding.value) + 'px';
+                    }
+                }
             }
         })
+
+        //document.getElementById('search').focus();
     </script>
 </body>
 
